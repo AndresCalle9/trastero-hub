@@ -43,7 +43,16 @@ Edita `config/apps.config.ts` y agrega un objeto al array:
 }
 ```
 
-Si usas un ícono de Lucide y no está en `components/app-icons.tsx`, impórtalo ahí desde `lucide-react` y agrégalo al mapa `APP_ICONS` (se hace explícito a propósito, para no bundlear el paquete de íconos completo). Si usas el logo propio de la app, ponlo en `public/apps/` y referencia la ruta (`/apps/...`) — `components/AppCard.tsx` detecta el string automáticamente.
+Si usas un ícono de Lucide y no está en `components/app-icons.tsx`, impórtalo ahí desde `lucide-react` y agrégalo al mapa `APP_ICONS` (se hace explícito a propósito, para no bundlear el paquete de íconos completo). Si usas el logo propio de la app, ponlo en `public/assets/apps/` y referencia la ruta (`/assets/apps/...`) — `components/AppCard.tsx` detecta el string automáticamente.
+
+## Assets estáticos
+
+```
+public/assets/brand/  logo/isotipo de Trastero (Hero, OG image)
+public/assets/apps/   logos propios de cada app (cuando no alcanza un ícono de Lucide)
+```
+
+El favicon (`app/favicon.ico`), el ícono moderno (`app/icon.png`) y el ícono de iOS (`app/apple-icon.png`) vivimos **dentro de `/app`**, no en `/public`: es una convención de archivo de Next.js — sólo ahí el framework los detecta automáticamente y genera los `<link rel="icon">`/`<link rel="apple-touch-icon">` correspondientes. Si se movieran a `/public` dejarían de generarse esos tags solos.
 
 No requiere tocar componentes ni rutas — el grid se genera a partir de este archivo.
 

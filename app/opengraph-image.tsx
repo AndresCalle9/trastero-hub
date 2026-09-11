@@ -8,7 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpengraphImage() {
-  const markData = readFileSync(join(process.cwd(), "public/brand/trastero-mark.png"));
+  const markData = readFileSync(join(process.cwd(), "public/assets/brand/trastero-mark.png"));
   const markSrc = `data:image/png;base64,${markData.toString("base64")}`;
 
   return new ImageResponse(

@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section className="mx-auto max-w-3xl px-6 pb-12 pt-20 text-center sm:pt-28">
       <Image
-        src="/brand/trastero-mark.png"
+        src="/assets/brand/trastero-mark.png"
         alt=""
         width={64}
         height={64}

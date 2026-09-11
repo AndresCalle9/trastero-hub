@@ -23,7 +23,7 @@ export const apps: AppConfig[] = [
     name: "Nest",
     description: "Reparte las tareas de la casa sin que nadie se pelee por quién lava.",
     url: "https://home-tasks-phi.vercel.app/",
-    icon: "/apps/nest-logo.png",
+    icon: "/assets/apps/nest-logo.png",
     status: "live",
   },
   {
