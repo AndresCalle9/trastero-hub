@@ -8,7 +8,7 @@ export function Hero() {
       </h1>
       <p className="mt-4 text-lg text-hub-text/70">{SITE_TAGLINE}</p>
       <p className="mx-auto mt-2 max-w-xl text-sm text-hub-text/50">
-        Cada app vive en su propio rincón (subdominio). Acá abajo están todas juntas.
+        Cada app vive en su propio rincón. Acá abajo están todas juntas.
       </p>
     </section>
   );

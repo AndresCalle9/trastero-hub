@@ -9,7 +9,9 @@ Doble propósito:
 
 ## Stack
 
-Next.js 14 (App Router) + TypeScript + Tailwind. Sitio completamente estático salvo la generación de imágenes Open Graph (`next/og`, que empaqueta `@vercel/og`). Sin autenticación, sin backend propio, sin base de datos — el listado de apps es contenido estático versionado en el repo.
+Next.js 14 (App Router) + TypeScript + Tailwind v4. Sitio completamente estático salvo la generación de imágenes Open Graph (`next/og`, que empaqueta `@vercel/og`). Sin autenticación, sin backend propio, sin base de datos — el listado de apps es contenido estático versionado en el repo.
+
+Usamos Tailwind v4 (en vez del v3 que trae `create-next-app` por defecto) para alinear la versión con la que ya usa `@andrescalle9/ui` internamente — así su `dist/styles.css` se importa como CSS global normal (`app/layout.tsx`) y pasa por el mismo pipeline de PostCSS sin conflictos.
 
 ## Desarrollo
 
@@ -56,7 +58,8 @@ No requiere tocar componentes ni rutas — el grid se genera a partir de este ar
 
 El paquete instalado (`0.2.0`) expone menos de lo que documenta su propio README:
 
-- **No hay preset de Tailwind que extender.** El paquete usa Tailwind v4 internamente y publica un `dist/styles.css` ya compilado — sus tokens viven como CSS custom properties (`--hub-bg`, `--hub-text`, `--hub-accent`, `--hub-accent-2`, `--hub-font-heading`, `--hub-font-body`). En `tailwind.config.ts` mapeamos esas mismas variables a utilidades (`bg-hub-accent`, `font-heading`, etc.) en vez de extender un preset inexistente.
+- **No hay preset de Tailwind que extender.** El paquete no exporta ninguno (Tailwind v4 es CSS-first: no existe el concepto de "preset" de v3). Publica un `dist/styles.css` ya compilado, con sus tokens como CSS custom properties (`--hub-bg`, `--hub-text`, `--hub-accent`, `--hub-accent-2`, `--hub-font-heading`, `--hub-font-body`). En `app/globals.css` los exponemos como theme de Tailwind (bloque `@theme`) para poder usarlos con utilidades (`bg-hub-accent`, `font-heading`, etc.).
+- **Requiere que el host esté en Tailwind v4.** Si el host usa Tailwind v3 (como deja `create-next-app` por defecto), importar `dist/styles.css` como CSS global rompe el build: el plugin de PostCSS de v3 no entiende los `@layer` que genera la v4. Por eso este repo usa Tailwind v4 en vez del v3 default — ver más arriba.
 - **`generateAppMetadata()` no está exportado.** El README del paquete lo menciona, pero `dist/index.js` sólo exporta `Button`, `Card`, `HubFooter`, `HubHeader`. Por eso este repo define su propio helper en `lib/metadata.ts`. Si una versión futura del paquete lo agrega, vale la pena migrar.
 - **El botón "Entrar" no usa el componente `Button`.** `Button` sólo renderiza un `<button>`, y acá necesitamos un link real (`<a>`) al subdominio de cada app. `components/AppCard.tsx` reutiliza las clases CSS reales del paquete (`tui-btn`, `tui-btn--primary`, etc.) sobre un `<a>`, para no duplicar la lógica de estilos ni perder la semántica de link.
 - `HubHeader`/`HubFooter` están pensados para las apps satélite (para volver al hub y cruzar tráfico entre ellas), no para el hub mismo — por eso no se usan en este repo.
