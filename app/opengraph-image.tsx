@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { SITE_TAGLINE } from "@/lib/site";
 
@@ -6,6 +8,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpengraphImage() {
+  const markData = readFileSync(join(process.cwd(), "public/brand/trastero-mark.png"));
+  const markSrc = `data:image/png;base64,${markData.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -20,8 +25,11 @@ export default function OpengraphImage() {
           color: "#1a1a1a",
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element -- satori (next/og) no soporta next/image */}
+        <img src={markSrc} width={120} height={120} alt="" />
         <div
           style={{
+            marginTop: 16,
             fontSize: 120,
             fontWeight: 600,
             letterSpacing: "-0.02em",
@@ -38,15 +46,6 @@ export default function OpengraphImage() {
         >
           {SITE_TAGLINE}
         </div>
-        <div
-          style={{
-            marginTop: 48,
-            width: 120,
-            height: 6,
-            borderRadius: 3,
-            background: "#e8a33d",
-          }}
-        />
       </div>
     ),
     { ...size }

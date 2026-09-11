@@ -1,16 +1,26 @@
+import Image from "next/image";
 import { Card } from "@andrescalle9/ui";
-import type { AppConfig } from "@/config/apps.config";
-import { APP_ICONS } from "./app-icons";
+import type { AppConfig, AppIcon } from "@/config/apps.config";
+import { APP_ICONS, type AppIconName } from "./app-icons";
+
+function isImagePath(icon: AppIcon): icon is `/${string}` {
+  return icon.startsWith("/");
+}
 
 export function AppCard({ app }: { app: AppConfig }) {
-  const Icon = APP_ICONS[app.icon];
   const isLive = app.status === "live";
+  const imageIcon = isImagePath(app.icon) ? app.icon : null;
+  const Icon = imageIcon ? null : APP_ICONS[app.icon as AppIconName];
 
   return (
     <Card className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-hub-accent/15 text-hub-accent">
-          <Icon aria-hidden size={20} />
+        <span className="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-hub-accent/15">
+          {imageIcon ? (
+            <Image src={imageIcon} alt="" fill sizes="40px" className="object-contain p-1" />
+          ) : (
+            Icon && <Icon aria-hidden size={20} className="text-hub-accent" />
+          )}
         </span>
         <span
           className={`rounded-full px-2.5 py-1 text-xs font-medium ${

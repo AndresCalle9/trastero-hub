@@ -2,11 +2,14 @@ import type { AppIconName } from "@/components/app-icons";
 
 export type AppStatus = "live" | "soon";
 
+/** Nombre de ícono de components/app-icons.tsx, o una ruta a una imagen en /public. */
+export type AppIcon = AppIconName | `/${string}`;
+
 export interface AppConfig {
   name: string;
   description: string;
   url: string;
-  icon: AppIconName;
+  icon: AppIcon;
   status: AppStatus;
 }
 
@@ -20,7 +23,7 @@ export const apps: AppConfig[] = [
     name: "Nest",
     description: "Reparte las tareas de la casa sin que nadie se pelee por quién lava.",
     url: "https://nest.trastero.dev",
-    icon: "Home",
+    icon: "/apps/nest-logo.png",
     status: "soon",
   },
   {

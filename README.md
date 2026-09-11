@@ -38,12 +38,12 @@ Edita `config/apps.config.ts` y agrega un objeto al array:
   name: "Nombre de la app",
   description: "Una línea, tono informal.",
   url: "https://nombre-app.trastero.dev",
-  icon: "Home", // debe existir en components/app-icons.tsx
+  icon: "Home", // un ícono de lucide-react (ver components/app-icons.tsx) o una ruta a /public, ej. "/apps/mi-app-logo.png"
   status: "live", // "live" | "soon"
 }
 ```
 
-Si el ícono que necesitas no está en `components/app-icons.tsx`, impórtalo ahí desde `lucide-react` y agrégalo al mapa `APP_ICONS` (se hace explícito a propósito, para no bundlear el paquete de íconos completo).
+Si usas un ícono de Lucide y no está en `components/app-icons.tsx`, impórtalo ahí desde `lucide-react` y agrégalo al mapa `APP_ICONS` (se hace explícito a propósito, para no bundlear el paquete de íconos completo). Si usas el logo propio de la app, ponlo en `public/apps/` y referencia la ruta (`/apps/...`) — `components/AppCard.tsx` detecta el string automáticamente.
 
 No requiere tocar componentes ni rutas — el grid se genera a partir de este archivo.
 
