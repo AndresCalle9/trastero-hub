@@ -29,14 +29,14 @@ export const apps: AppConfig[] = [
   {
     name: "Ledger",
     description: "Gastos compartidos sin abrir una hoja de cálculo cada vez.",
-    url: "https://ledger.trastero.dev",
+    url: "",
     icon: "Receipt",
     status: "soon",
   },
   {
     name: "Wisp",
     description: "Notas rápidas que se archivan solas cuando ya no las necesitas.",
-    url: "https://wisp.trastero.dev",
+    url: "",
     icon: "Sparkles",
     status: "soon",
   },

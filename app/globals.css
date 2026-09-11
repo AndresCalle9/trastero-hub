@@ -17,12 +17,9 @@
   --font-body: var(--hub-font-body);
 }
 
-:root {
-  /* Tipografías optimizadas vía next/font, mapeadas a los nombres que
-     @andrescalle9/ui espera en sus custom properties. */
-  --hub-font-heading: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
-  --hub-font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
+/* El override de --hub-font-heading/--hub-font-body vive como inline style
+   en <html> (ver app/layout.tsx) para no depender del orden de cascade layers
+   entre este archivo y @andrescalle9/ui/styles.css. */
 
 body {
   background-color: var(--hub-bg);
