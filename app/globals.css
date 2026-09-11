@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Tipografías optimizadas vía next/font, mapeadas a los nombres que
+     @andrescalle9/ui espera en sus custom properties. */
+  --hub-font-heading: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --hub-font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--hub-bg);
+  color: var(--hub-text);
+  font-family: var(--hub-font-body);
+}

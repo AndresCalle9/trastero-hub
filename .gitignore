@@ -10,6 +10,10 @@ build/
  
 # vercel
 .vercel/
+
+# generado por scripts/copy-ui-styles.mjs (predev/prebuild) a partir de
+# node_modules/@andrescalle9/ui/dist/styles.css
+public/vendor/
  
 # env
 .env
