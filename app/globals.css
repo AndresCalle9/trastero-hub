@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/*
+ * @andrescalle9/ui no exporta un preset (Tailwind v4 es CSS-first, no hay
+ * "preset" que extender como en v3). Sus tokens viven como CSS custom
+ * properties, fijadas por @andrescalle9/ui/styles.css (importado en
+ * app/layout.tsx). Acá los exponemos como theme de Tailwind para poder
+ * usarlos con utilidades (bg-hub-accent, font-heading, etc.) sin
+ * hardcodear valores propios.
+ */
+@theme {
+  --color-hub-bg: var(--hub-bg);
+  --color-hub-text: var(--hub-text);
+  --color-hub-accent: var(--hub-accent);
+  --color-hub-accent-2: var(--hub-accent-2);
+  --font-heading: var(--hub-font-heading);
+  --font-body: var(--hub-font-body);
+}
+
+/* El override de --hub-font-heading/--hub-font-body vive como inline style
+   en <html> (ver app/layout.tsx) para no depender del orden de cascade layers
+   entre este archivo y @andrescalle9/ui/styles.css. */
+
+body {
+  background-color: var(--hub-bg);
+  color: var(--hub-text);
+  font-family: var(--hub-font-body);
+}
